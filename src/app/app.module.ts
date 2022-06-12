@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
+import { TopnavComponent } from './shared/topnav/topnav.component';
+import { ComingsoonComponent } from './shared/comingsoon/comingsoon.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TopnavComponent,
+    ComingsoonComponent
   ],
   imports: [
     BrowserModule,
