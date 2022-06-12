@@ -7,8 +7,9 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { TopnavComponent } from './shared/topnav/topnav.component';
-import { ComingsoonComponent } from './shared/comingsoon/comingsoon.component';
+import { ComingsoonComponent } from './views/comingsoon/comingsoon.component';
 import { NewLobbyButtonComponent } from './shared/new-lobby-button/new-lobby-button.component';
+import { LobbyComponent } from './views/lobby/lobby.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { NewLobbyButtonComponent } from './shared/new-lobby-button/new-lobby-but
     AppComponent,
     TopnavComponent,
     ComingsoonComponent,
-    NewLobbyButtonComponent
+    NewLobbyButtonComponent,
+    LobbyComponent
   ],
   imports: [
     BrowserModule,
