@@ -10,6 +10,7 @@ import { TopnavComponent } from './shared/topnav/topnav.component';
 import { ComingsoonComponent } from './views/comingsoon/comingsoon.component';
 import { NewLobbyButtonComponent } from './shared/new-lobby-button/new-lobby-button.component';
 import { LobbyComponent } from './views/lobby/lobby.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { LobbyComponent } from './views/lobby/lobby.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

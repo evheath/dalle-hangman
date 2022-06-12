@@ -1,4 +1,20 @@
 <!-- <p>lobby works!</p> -->
-<p>lobby id: {{lobbyId}}</p>
-<p>lobby doc: {{lobbyDoc$ |async | json}}</p>
-<p>dalle doc: {{dalleDoc$ |async | json}}</p>
+<!-- <p>lobby id: {{lobbyId}}</p> -->
+<div *ngIf="(lobbyDoc$ |async) as lobbyData">
+
+  <p>lobby doc: {{lobbyDoc$ |async | json}}</p>
+  <p>dalle doc: {{dalleDoc$ |async | json}}</p>
+  <!-- <p>dalle doc: {{dalleData|json}}</p> -->
+  <p>Guess: {{guess}}</p>
+  <div>
+    <label for="guess" class="block text-sm font-medium text-gray-700">Enter Your <span
+        class="font-bold">One-Word</span>
+      Guess</label>
+    <div class="mt-1" *ngIf="(dalleDoc$ |async) as dalleData">
+      <input (keyup.enter)="submitGuess(lobbyData,dalleData)" type="guess" name="guess" id="guess" [(ngModel)]="guess"
+        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+        placeholder="Goblin" aria-describedby="guess-description">
+    </div>
+  </div>
+
+</div>
