@@ -1,4 +1,6 @@
 <!--
+  https://tailwindui.com/components/application-ui/application-shells/multi-column
+
   This example requires Tailwind CSS v2.0+ 
   
   This example requires some changes to your config:
@@ -33,11 +35,14 @@
         <!-- Your content -->
 
 
+        <app-dalle-images [dalleId]="lobbyData.dalleId"></app-dalle-images>
 
-        <p>lobby doc: {{lobbyDoc$ |async | json}}</p>
+
+
+        <!-- <p>lobby doc: {{lobbyDoc$ |async | json}}</p> -->
         <!-- <p>dalle doc: {{dalleDoc$ |async | json}}</p> -->
         <!-- <p>dalle doc: {{dalleData|json}}</p> -->
-        <p>Guess: {{guess}}</p>
+        <!-- <p>Guess: {{guess}}</p> -->
         <div>
           <label for="guess" class="block text-sm font-medium text-gray-700">Enter Your <span
               class="font-bold">One-Word</span>
@@ -49,7 +54,6 @@
               placeholder="Goblin" aria-describedby="guess-description">
           </div>
 
-          <app-dalle-images [dalleId]="lobbyData.dalleId"></app-dalle-images>
 
         </div>
       </main>
