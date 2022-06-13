@@ -37,25 +37,24 @@
 
         <app-dalle-images [dalleId]="lobbyData.dalleId"></app-dalle-images>
 
-
-
-        <!-- <p>lobby doc: {{lobbyDoc$ |async | json}}</p> -->
-        <!-- <p>dalle doc: {{dalleDoc$ |async | json}}</p> -->
-        <!-- <p>dalle doc: {{dalleData|json}}</p> -->
-        <!-- <p>Guess: {{guess}}</p> -->
+        <!-- enter guess -->
         <div>
-          <label for="guess" class="block text-sm font-medium text-gray-700">Enter Your <span
+          <label for="email" class="block text-sm font-medium text-gray-700">Enter Your <span
               class="font-bold">One-Word</span>
             Guess</label>
-          <div class="mt-1" *ngIf="(dalleDoc$ |async) as dalleData">
-            <input (keyup.enter)="submitGuess(lobbyData,dalleData)" type="guess" name="guess" id="guess"
-              [(ngModel)]="guess"
-              class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-              placeholder="Goblin" aria-describedby="guess-description">
+          <div class="mt-1 flex rounded-md shadow-sm" *ngIf="(dalleDoc$ |async) as dalleData">
+            <div class="relative flex items-stretch flex-grow focus-within:z-10">
+              <input (keyup.enter)="submitGuess(lobbyData,dalleData)" [(ngModel)]="guess"
+                class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-2 sm:text-sm border-gray-300"
+                placeholder="Goblin">
+            </div>
+            <button (click)="submitGuess(lobbyData,dalleData)" type="button"
+              class="-ml-px button relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+              <span>Submit</span>
+            </button>
           </div>
-
-
         </div>
+
       </main>
       <aside class="hidden xl:block xl:col-span-4">
         <div class="sticky top-6 space-y-4">
