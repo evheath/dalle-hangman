@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription, tap } from 'rxjs';
 import { Dalle, Lobby } from 'src/app/models';
+import { faker } from '@faker-js/faker';
 
 @Component({
   selector: 'app-lobby',
@@ -10,6 +11,7 @@ import { Dalle, Lobby } from 'src/app/models';
   styleUrls: ['./lobby.component.css']
 })
 export class LobbyComponent implements OnInit, OnDestroy {
+  public placeholder = faker.random.word();
   public guess: string = "";
   // public lobbyId: string = "";
   private subs = new Subscription();
