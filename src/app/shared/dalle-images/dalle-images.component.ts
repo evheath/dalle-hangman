@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dalle-images',
@@ -18,7 +18,7 @@ export class DalleImagesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(`DalleImagesComponent.ngOnInit()`);
+    // console.log(`DalleImagesComponent.ngOnInit()`);
     for (let i = 1; i <= 9; i++) {
       this.urls.push(this.getUrl(i));
     }

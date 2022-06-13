@@ -14,7 +14,7 @@
   }
   ```
 -->
-<div class="min-h-screen bg-gray-100">
+<div class="min-h-screen bg-gray-100" *ngIf="(lobbyDoc$ |async) as lobbyData">
   <!--
     When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars
 
@@ -33,22 +33,20 @@
         <!-- Your content -->
 
 
-        <div *ngIf="(lobbyDoc$ |async) as lobbyData">
 
-          <p>lobby doc: {{lobbyDoc$ |async | json}}</p>
-          <!-- <p>dalle doc: {{dalleDoc$ |async | json}}</p> -->
-          <!-- <p>dalle doc: {{dalleData|json}}</p> -->
-          <p>Guess: {{guess}}</p>
-          <div>
-            <label for="guess" class="block text-sm font-medium text-gray-700">Enter Your <span
-                class="font-bold">One-Word</span>
-              Guess</label>
-            <div class="mt-1" *ngIf="(dalleDoc$ |async) as dalleData">
-              <input (keyup.enter)="submitGuess(lobbyData,dalleData)" type="guess" name="guess" id="guess"
-                [(ngModel)]="guess"
-                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                placeholder="Goblin" aria-describedby="guess-description">
-            </div>
+        <p>lobby doc: {{lobbyDoc$ |async | json}}</p>
+        <!-- <p>dalle doc: {{dalleDoc$ |async | json}}</p> -->
+        <!-- <p>dalle doc: {{dalleData|json}}</p> -->
+        <p>Guess: {{guess}}</p>
+        <div>
+          <label for="guess" class="block text-sm font-medium text-gray-700">Enter Your <span
+              class="font-bold">One-Word</span>
+            Guess</label>
+          <div class="mt-1" *ngIf="(dalleDoc$ |async) as dalleData">
+            <input (keyup.enter)="submitGuess(lobbyData,dalleData)" type="guess" name="guess" id="guess"
+              [(ngModel)]="guess"
+              class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+              placeholder="Goblin" aria-describedby="guess-description">
           </div>
 
           <app-dalle-images [dalleId]="lobbyData.dalleId"></app-dalle-images>
@@ -58,6 +56,8 @@
       <aside class="hidden xl:block xl:col-span-4">
         <div class="sticky top-6 space-y-4">
           <!-- Your content -->
+
+          <app-wrong-guesses [guesses]="lobbyData.wrongGuesses"></app-wrong-guesses>
 
         </div>
       </aside>

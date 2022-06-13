@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { DalleImagesComponent } from './shared/dalle-images/dalle-images.component';
 
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { WrongGuessesComponent } from './components/wrong-guesses/wrong-guesses.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     NewLobbyButtonComponent,
     LobbyComponent,
     DalleImagesComponent,
+    WrongGuessesComponent,
   ],
   imports: [
     BrowserModule,
