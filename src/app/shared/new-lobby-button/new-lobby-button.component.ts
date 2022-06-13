@@ -25,7 +25,7 @@ export class NewLobbyButtonComponent implements OnInit {
   public async createLobby() {
     // console.log("creating lobby");
     this.loading = true;
-    let newLobby: Lobby = { dalle: "yqv0neMVXSjUATa2g6nl", wrongGuesses: [], correctGuesses: [] };
+    let newLobby: Lobby = { dalleId: "yqv0neMVXSjUATa2g6nl", wrongGuesses: [], correctGuesses: [] };
     const lobbyRef = await this.db.collection<Lobby>('lobbies').add(newLobby);
     this.router.navigate(['lobby', lobbyRef.id]);
 

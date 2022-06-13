@@ -1,5 +1,5 @@
 export interface Lobby {
-  dalle: string;
+  dalleId: string;
   wrongGuesses: string[];
   correctGuesses: string[];
 }

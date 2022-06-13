@@ -11,7 +11,9 @@ import { ComingsoonComponent } from './views/comingsoon/comingsoon.component';
 import { NewLobbyButtonComponent } from './shared/new-lobby-button/new-lobby-button.component';
 import { LobbyComponent } from './views/lobby/lobby.component';
 import { FormsModule } from '@angular/forms';
+import { DalleImagesComponent } from './shared/dalle-images/dalle-images.component';
 
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,15 @@ import { FormsModule } from '@angular/forms';
     TopnavComponent,
     ComingsoonComponent,
     NewLobbyButtonComponent,
-    LobbyComponent
+    LobbyComponent,
+    DalleImagesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    FormsModule
+    FormsModule,
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

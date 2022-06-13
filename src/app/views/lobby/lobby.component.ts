@@ -67,7 +67,7 @@ export class LobbyComponent implements OnInit, OnDestroy {
       this.lobbyDoc$.subscribe(async lobby => {
         if (lobby) {
           // let dalleRef = this.db.doc<Dalle>(`dalle/${lobby.dalle}`);
-          this.dalleDoc$ = this.db.doc<Dalle>(`dalle/${lobby.dalle}`).valueChanges() as Observable<Dalle>;
+          this.dalleDoc$ = this.db.doc<Dalle>(`dalle/${lobby.dalleId}`).valueChanges() as Observable<Dalle>;
           // this.dalleData = await dalleRef.get().toPromise().then(d => d!.data() as Dalle);
         }
       })

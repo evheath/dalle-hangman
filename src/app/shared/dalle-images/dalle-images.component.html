@@ -1,0 +1,10 @@
+<!-- <p>dalle-images works! {{dalle}}</p> -->
+<!-- <p>{{url1|async}}</p> -->
+<!-- <p>{{(getUrl(1)|async)}}</p> -->
+<div *ngFor="let url$ of urls">
+  <!-- <p>{{url$ | async}}</p> -->
+  <img [src]="url$ | async">
+  <!-- <p>{{num}}</p> -->
+  <!-- <p>{{getUrl(num) | async}}</p> -->
+  <!-- <p>{{getUrl(num) | async}}</p> -->
+</div>

@@ -3,7 +3,7 @@
 <div *ngIf="(lobbyDoc$ |async) as lobbyData">
 
   <p>lobby doc: {{lobbyDoc$ |async | json}}</p>
-  <p>dalle doc: {{dalleDoc$ |async | json}}</p>
+  <!-- <p>dalle doc: {{dalleDoc$ |async | json}}</p> -->
   <!-- <p>dalle doc: {{dalleData|json}}</p> -->
   <p>Guess: {{guess}}</p>
   <div>
@@ -16,5 +16,7 @@
         placeholder="Goblin" aria-describedby="guess-description">
     </div>
   </div>
+
+  <app-dalle-images [dalleId]="lobbyData.dalleId"></app-dalle-images>
 
 </div>
