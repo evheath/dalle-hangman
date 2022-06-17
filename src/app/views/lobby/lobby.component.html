@@ -16,13 +16,13 @@
   }
   ```
 -->
-<div class="min-h-screen bg-gray-100" *ngIf="(lobbyDoc$ |async) as lobbyData">
+<div class="min-h-screen bg-gray-200" *ngIf="(lobbyDoc$ |async) as lobbyData">
   <!--
     When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars
 
     Open: "fixed inset-0 z-40 overflow-y-auto", Closed: ""
   -->
-  <app-topnav></app-topnav>
+  <!-- <app-topnav></app-topnav> -->
 
   <div class="py-6">
     <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
