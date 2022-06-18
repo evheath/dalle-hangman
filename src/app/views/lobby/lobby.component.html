@@ -1,45 +1,23 @@
-<!--
-  https://tailwindui.com/components/application-ui/application-shells/multi-column
-
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-<div class="min-h-screen bg-gray-200">
-  <!--
-    When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars
-
-    Open: "fixed inset-0 z-40 overflow-y-auto", Closed: ""
-  -->
-  <!-- <app-topnav></app-topnav> -->
+<app-right-guesses></app-right-guesses>
+<app-wrong-guesses></app-wrong-guesses>
+<app-dalle-images></app-dalle-images>
+<app-guess-input></app-guess-input>
+<app-scoreboard></app-scoreboard>
+<app-change-name></app-change-name>
+<!-- <div class="min-h-screen bg-gray-200">
 
   <div  *ngIf="(lobbyDoc$ |async) as lobbyData">
     <div class="py-6">
       <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
         <div class="hidden lg:block lg:col-span-3 xl:col-span-2">
           <nav aria-label="Sidebar" class="sticky top-6 divide-y divide-gray-300">
-            <!-- Your content -->
             <div class="bg-white h-72"></div>
           </nav>
         </div>
         <main class="lg:col-span-9 xl:col-span-6">
-          <!-- Your content -->
-  
   
           <app-dalle-images [dalleId]="lobbyData.dalleId"></app-dalle-images>
   
-          <!-- enter guess -->
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700">Enter Your <span
                 class="font-bold">One-Word</span>
@@ -60,7 +38,6 @@
         </main>
         <aside class="hidden xl:block xl:col-span-4">
           <div class="sticky top-6 space-y-4">
-            <!-- Your content -->
   
             <app-wrong-guesses class="bg-white" [guesses]="lobbyData.wrongGuesses"></app-wrong-guesses>
   
@@ -70,4 +47,4 @@
     </div>
 
   </div>
-</div>
+</div> -->

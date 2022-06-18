@@ -15,6 +15,10 @@ import { DalleImagesComponent } from './components/dalle-images/dalle-images.com
 
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { WrongGuessesComponent } from './components/wrong-guesses/wrong-guesses.component';
+import { RightGuessesComponent } from './components/right-guesses/right-guesses.component';
+import { GuessInputComponent } from './components/guess-input/guess-input.component';
+import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
+import { ChangeNameComponent } from './components/change-name/change-name.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { WrongGuessesComponent } from './components/wrong-guesses/wrong-guesses.
     LobbyComponent,
     DalleImagesComponent,
     WrongGuessesComponent,
+    RightGuessesComponent,
+    GuessInputComponent,
+    ScoreboardComponent,
+    ChangeNameComponent,
   ],
   imports: [
     BrowserModule,

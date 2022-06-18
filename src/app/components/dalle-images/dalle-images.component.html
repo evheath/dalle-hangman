@@ -1,40 +1,9 @@
-<!--
-  https://tailwindui.com/components/application-ui/lists/grid-lists
-
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
+<p>dalle-images works!</p>
 <ul  class="grid grid-cols-3 gap-1">
   <li class="relative" *ngFor="let url$ of urls">
     <div
       class="group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
       <img [src]="url$ | async" alt="" class="object-cover pointer-events-none">
-      <!-- <button type="button" class="absolute inset-0 focus:outline-none">
-        <span class="sr-only">View details for IMG_4985.HEIC</span>
-      </button> -->
     </div>
-    <!-- <p class="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">IMG_4985.HEIC</p>
-    <p class="block text-sm font-medium text-gray-500 pointer-events-none">3.9 MB</p> -->
   </li>
 </ul>
-
-
-
-
-
-
-<!-- <div *ngFor="let url$ of urls">
-  <img [src]="url$ | async">
-</div> -->
