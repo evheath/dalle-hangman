@@ -16,7 +16,7 @@
   }
   ```
 -->
-<div class="min-h-screen bg-gray-200" *ngIf="(lobbyDoc$ |async) as lobbyData">
+<div class="min-h-screen bg-gray-200">
   <!--
     When the mobile menu is open, add `overflow-hidden` to the `body` element to prevent double scrollbars
 
@@ -24,46 +24,50 @@
   -->
   <!-- <app-topnav></app-topnav> -->
 
-  <div class="py-6">
-    <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
-      <div class="hidden lg:block lg:col-span-3 xl:col-span-2">
-        <nav aria-label="Sidebar" class="sticky top-6 divide-y divide-gray-300">
+  <div  *ngIf="(lobbyDoc$ |async) as lobbyData">
+    <div class="py-6">
+      <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
+        <div class="hidden lg:block lg:col-span-3 xl:col-span-2">
+          <nav aria-label="Sidebar" class="sticky top-6 divide-y divide-gray-300">
+            <!-- Your content -->
+            <div class="bg-white h-72"></div>
+          </nav>
+        </div>
+        <main class="lg:col-span-9 xl:col-span-6">
           <!-- Your content -->
-        </nav>
-      </div>
-      <main class="lg:col-span-9 xl:col-span-6">
-        <!-- Your content -->
-
-
-        <app-dalle-images [dalleId]="lobbyData.dalleId"></app-dalle-images>
-
-        <!-- enter guess -->
-        <div>
-          <label for="email" class="block text-sm font-medium text-gray-700">Enter Your <span
-              class="font-bold">One-Word</span>
-            Guess</label>
-          <div class="mt-1 flex rounded-md shadow-sm" *ngIf="(dalleDoc$ |async) as dalleData">
-            <div class="relative flex items-stretch flex-grow focus-within:z-10">
-              <input (keyup.enter)="submitGuess(lobbyData,dalleData)" [(ngModel)]="guess"
-                class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-2 sm:text-sm border-gray-300"
-                [placeholder]="placeholder">
+  
+  
+          <app-dalle-images [dalleId]="lobbyData.dalleId"></app-dalle-images>
+  
+          <!-- enter guess -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Enter Your <span
+                class="font-bold">One-Word</span>
+              Guess</label>
+            <div class="mt-1 flex rounded-md shadow-sm" *ngIf="(dalleDoc$ |async) as dalleData">
+              <div class="relative flex items-stretch flex-grow focus-within:z-10">
+                <input (keyup.enter)="submitGuess(lobbyData,dalleData)" [(ngModel)]="guess"
+                  class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-2 sm:text-sm border-gray-300"
+                  [placeholder]="placeholder">
+              </div>
+              <button (click)="submitGuess(lobbyData,dalleData)" type="button"
+                class="-ml-px button relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                <span>Submit</span>
+              </button>
             </div>
-            <button (click)="submitGuess(lobbyData,dalleData)" type="button"
-              class="-ml-px button relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-              <span>Submit</span>
-            </button>
           </div>
-        </div>
-
-      </main>
-      <aside class="hidden xl:block xl:col-span-4">
-        <div class="sticky top-6 space-y-4">
-          <!-- Your content -->
-
-          <app-wrong-guesses [guesses]="lobbyData.wrongGuesses"></app-wrong-guesses>
-
-        </div>
-      </aside>
+  
+        </main>
+        <aside class="hidden xl:block xl:col-span-4">
+          <div class="sticky top-6 space-y-4">
+            <!-- Your content -->
+  
+            <app-wrong-guesses class="bg-white" [guesses]="lobbyData.wrongGuesses"></app-wrong-guesses>
+  
+          </div>
+        </aside>
+      </div>
     </div>
+
   </div>
 </div>
