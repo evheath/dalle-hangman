@@ -5,7 +5,7 @@ import { LobbyComponent } from './views/lobby/lobby.component';
 
 const routes: Routes = [
   { path: '', component: ComingsoonComponent },
-  { path: 'lobby/:id', component: LobbyComponent },
+  { path: 'lobby/:lobbyId', component: LobbyComponent },
 ];
 
 @NgModule({

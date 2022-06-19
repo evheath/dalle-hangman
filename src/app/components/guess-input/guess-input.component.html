@@ -1,1 +1,22 @@
-<p>guess-input works!</p>
+<p>lobbydoc in guess: {{lobbyService.lobbyDoc$|async|json}}</p>
+<div *ngIf="lobbyService.lobbyDoc$ | async as lobbyData; else loadingLobby">
+  <div *ngIf="dalleService.dalleDoc$ | async as dalleData">
+    <label for="email" class="block text-sm font-medium text-gray-700">Enter Your <span
+        class="font-bold">One-Word</span>
+      Guess</label>
+    <div class="mt-1 flex rounded-md shadow-sm">
+      <div class="relative flex items-stretch flex-grow focus-within:z-10">
+        <input (keyup.enter)="submitGuess(lobbyData,dalleData)" [(ngModel)]="guess"
+          class="focus:ring-indigo-500 focus:border-indigo-500 block w-full rounded-none rounded-l-md pl-2 sm:text-sm border-gray-300"
+          [placeholder]="placeholder">
+      </div>
+      <button (click)="submitGuess(lobbyData,dalleData)" type="button"
+        class="-ml-px button relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+        <span>Submit</span>
+      </button>
+    </div>
+  </div>
+</div>
+<ng-template #loadingLobby>
+  <p>Loading lobby</p>
+</ng-template>
