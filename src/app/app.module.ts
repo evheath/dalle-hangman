@@ -19,6 +19,7 @@ import { RightGuessesComponent } from './components/right-guesses/right-guesses.
 import { GuessInputComponent } from './components/guess-input/guess-input.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 import { ChangeNameComponent } from './components/change-name/change-name.component';
+import { UidToNamePipe } from './pipes/uid-to-name.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ChangeNameComponent } from './components/change-name/change-name.compon
     GuessInputComponent,
     ScoreboardComponent,
     ChangeNameComponent,
+    UidToNamePipe,
   ],
   imports: [
     BrowserModule,

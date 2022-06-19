@@ -1,9 +1,10 @@
 <!-- <p>change-name works!</p> -->
-<div *ngIf="(auth.user$ | async) as user">
+<div *ngIf="(auth.user$ | async) as user; else loggingIn">
   <!-- <div class="mx-auto h-12 w-12 rounded-full bg-green-100">
     <img [src]="'https://avatars.dicebear.com/api/adventurer/'+user.name+'.svg'"/>
   </div> -->
   <p class="cursor-pointer hover:bg-gray-100" (click)="toggle()">Change name: {{user.name}}</p>
+  <!-- <p class="hover:bg-gray-100">pipe: {{user.uid | uidToName | async }}</p> -->
   <!-- Edit name modal -->
   <div 
   [ngClass]="showModal ? 'opacity-100 block': 'opacity-0 hidden'"
@@ -40,4 +41,7 @@
 
 </div>
 
+<ng-template #loggingIn>
+<p>Logging in...</p>
+</ng-template>
 
