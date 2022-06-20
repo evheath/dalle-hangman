@@ -20,6 +20,7 @@ import { GuessInputComponent } from './components/guess-input/guess-input.compon
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 import { ChangeNameComponent } from './components/change-name/change-name.component';
 import { UidToNamePipe } from './pipes/uid-to-name.pipe';
+import { NextDalleButtonComponent } from './components/next-dalle-button/next-dalle-button.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { UidToNamePipe } from './pipes/uid-to-name.pipe';
     ScoreboardComponent,
     ChangeNameComponent,
     UidToNamePipe,
+    NextDalleButtonComponent,
   ],
   imports: [
     BrowserModule,
