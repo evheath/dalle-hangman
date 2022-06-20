@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { LobbyService } from 'src/app/services/lobby.service';
 
 @Component({
   selector: 'app-scoreboard',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScoreboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public lobbyService: LobbyService,
+    public authService: AuthService
+  ) { }
 
   ngOnInit(): void {
   }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, of, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap, tap } from 'rxjs';
 
 import { faker } from '@faker-js/faker';
 import { User } from '../models/user.model';
@@ -9,7 +9,8 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-  user$: Observable<User | undefined | null> = of(null);
+  private user$: Observable<User | undefined | null> = of(null);
+  public me$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -30,6 +31,13 @@ export class AuthService {
           : of(null)))
 
       )
+
+    this.user$.subscribe(user => {
+      if (user) {
+        this.me$.next(user);
+
+      }
+    })
   }
 
   public async signOut() {

@@ -1,5 +1,5 @@
 <!-- <p>change-name works!</p> -->
-<div *ngIf="(auth.user$ | async) as user; else loggingIn">
+<div *ngIf="(auth.me$ | async) as user; else loggingIn">
   <!-- <div class="mx-auto h-12 w-12 rounded-full bg-green-100">
     <img [src]="'https://avatars.dicebear.com/api/adventurer/'+user.name+'.svg'"/>
   </div> -->
