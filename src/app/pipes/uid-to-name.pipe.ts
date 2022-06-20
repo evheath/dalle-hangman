@@ -15,7 +15,7 @@ export class UidToNamePipe implements PipeTransform {
     // console.log(`getting name for uid: ${uid}`);
 
     const user = await this.db.doc<User>(`users/${uid}`).get().toPromise();
-    const name = user?.data()?.name || "Error getting name";
+    const name = user?.data()?.name ?? "Error getting name";
     // console.log(`got name for uid: ${uid}: ${name}`);
 
     return name;

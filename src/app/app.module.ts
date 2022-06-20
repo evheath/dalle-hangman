@@ -21,6 +21,7 @@ import { ScoreboardComponent } from './components/scoreboard/scoreboard.componen
 import { ChangeNameComponent } from './components/change-name/change-name.component';
 import { UidToNamePipe } from './pipes/uid-to-name.pipe';
 import { NextDalleButtonComponent } from './components/next-dalle-button/next-dalle-button.component';
+import { AdventurerUrlPipe } from './pipes/adventurer-url.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NextDalleButtonComponent } from './components/next-dalle-button/next-da
     ChangeNameComponent,
     UidToNamePipe,
     NextDalleButtonComponent,
+    AdventurerUrlPipe,
   ],
   imports: [
     BrowserModule,

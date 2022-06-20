@@ -1,9 +1,8 @@
 <div *ngIf="lobbyService.lobbyDoc$|async as lobbyData">
-  <!-- <p>{{lobbyData.scoreboard |json}}</p> -->
-  
-  <!-- <div *ngFor="const [key, value] in Object.entries(lobbyData.scoreboard)"> -->
   <div *ngFor="let score of lobbyData.scoreboard| keyvalue">
-    <img class="h-12" [src]="'https://avatars.dicebear.com/api/adventurer/'+(score.key | uidToName | async)+'.svg'"/>
+    <img class="h-12" 
+    [src]="score.key | uidToName | async |adventurerUrl" 
+    />
     <p>{{score.key | uidToName | async}}: {{score.value}}</p>
   </div>
 
