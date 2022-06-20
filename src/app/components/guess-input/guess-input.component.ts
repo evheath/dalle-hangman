@@ -3,6 +3,7 @@ import { Dalle, Lobby } from 'src/app/models';
 import { faker } from '@faker-js/faker';
 import { LobbyService } from 'src/app/services/lobby.service';
 import { DalleService } from 'src/app/services/dalle.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-guess-input',
@@ -15,16 +16,17 @@ export class GuessInputComponent implements OnInit {
   constructor(
     public lobbyService: LobbyService,
     public dalleService: DalleService,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
   }
 
   public async submitGuess(lobby: Lobby, dalle: Dalle) {
-    let updatedLobbyInfo = {} as Lobby;
-    updatedLobbyInfo.correctGuesses = lobby.correctGuesses;
-    updatedLobbyInfo.wrongGuesses = lobby.wrongGuesses;
     let words = this.guess ? this.guess.split(" ") : [this.placeholder];
+    let me = await this.authService.me$.getValue();
+    let uid = me!.uid;
+
     for (let word of words) {
       // stripping out punctuation, whitespace, and capital letters
       word = word.replace(/[^A-Za-z]+/g, "").toLowerCase();
@@ -33,20 +35,41 @@ export class GuessInputComponent implements OnInit {
         continue;
       }
 
-      let wrongGuess = !dalle.phrase.includes(word) && !updatedLobbyInfo.wrongGuesses.includes(word);;
+      let wrongGuess = !dalle.phrase.includes(word) && !lobby.wrongGuesses.includes(word);;
       if (wrongGuess) {
-        updatedLobbyInfo.wrongGuesses.push(word);
+        lobby.wrongGuesses.push(word);
+
+        // subtract 1 from this user's score
+        if (lobby.scoreboard[uid]) {
+          console.log("we are on the board");
+
+          lobby.scoreboard[uid] -= 1;
+
+        } else {
+          console.log("we are not on the board");
+          lobby.scoreboard[uid] = -1;
+        }
       }
 
-      let correctGuess = dalle.phrase.includes(word) && !updatedLobbyInfo.correctGuesses.includes(word);
+      let correctGuess = dalle.phrase.includes(word) && !lobby.correctGuesses.includes(word);
       if (correctGuess) {
-        updatedLobbyInfo.correctGuesses.push(word);
+        lobby.correctGuesses.push(word);
 
+        // add 1 from this user's score
+        if (lobby.scoreboard[uid]) {
+          console.log("we are on the board");
+
+          lobby.scoreboard[uid] += 1;
+
+        } else {
+          console.log("we are not on the board");
+          lobby.scoreboard[uid] = 1;
+        }
       }
     }
     this.guess = "";
     this.placeholder = faker.random.word();
-    await this.lobbyService.updateLobby(updatedLobbyInfo);
+    await this.lobbyService.updateLobby(lobby);
   }
 
 }
