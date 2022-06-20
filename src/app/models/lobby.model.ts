@@ -3,6 +3,6 @@ export interface Lobby {
   wrongGuesses: string[];
   correctGuesses: string[];
   scoreboard: {
-    [uid: string]: number
+    [key: string]: number
   }
 }

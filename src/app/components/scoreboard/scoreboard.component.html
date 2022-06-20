@@ -1,3 +1,9 @@
-<!-- <p>scoreboard works!</p> -->
-<p>lobbydoc$ in scoreboard {{lobbyService.lobbyDoc$|async|json}}</p>
-<p>me$ in scoreboard {{authService.me$|async|json}}</p>
+<div *ngIf="lobbyService.lobbyDoc$|async as lobbyData">
+  <!-- <p>{{lobbyData.scoreboard |json}}</p> -->
+  
+  <!-- <div *ngFor="const [key, value] in Object.entries(lobbyData.scoreboard)"> -->
+  <div *ngFor="let score of lobbyData.scoreboard| keyvalue">
+    <p>{{score.key | uidToName | async}}: {{score.value}}</p>
+  </div>
+
+</div>

@@ -10,8 +10,7 @@ import { LobbyService } from 'src/app/services/lobby.service';
 export class ScoreboardComponent implements OnInit {
 
   constructor(
-    public lobbyService: LobbyService,
-    public authService: AuthService
+    public lobbyService: LobbyService
   ) { }
 
   ngOnInit(): void {
