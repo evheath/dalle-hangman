@@ -9,6 +9,7 @@ import { LobbyService } from 'src/app/services/lobby.service';
 })
 export class LobbyComponent implements OnInit, OnDestroy {
 
+  public menuHidden: boolean = true;
 
 
   constructor(
@@ -29,6 +30,10 @@ export class LobbyComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+  }
+
+  public toggleSidebar() {
+    this.menuHidden = !this.menuHidden;
   }
 
 }
