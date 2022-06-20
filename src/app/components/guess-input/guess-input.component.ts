@@ -21,27 +21,32 @@ export class GuessInputComponent implements OnInit {
   }
 
   public async submitGuess(lobby: Lobby, dalle: Dalle) {
-    let firstWord = this.guess.split(" ")[0];
-    console.log(`submit guess: ${firstWord}`);
-    // let wrongGuess = !dalle.phrase.includes(firstWord) && !lobby.wrongGuesses.includes(firstWord);;
-    // if (wrongGuess) {
-    //   console.log("incorrect guess");
-    //   await this.lobbyRef.update({
-    //     wrongGuesses: [
-    //       ...lobby.wrongGuesses,
-    //       firstWord]
-    //   });
-    // }
+    let updatedLobbyInfo = {} as Lobby;
+    updatedLobbyInfo.correctGuesses = lobby.correctGuesses;
+    updatedLobbyInfo.wrongGuesses = lobby.wrongGuesses;
+    let words = this.guess ? this.guess.split(" ") : [this.placeholder];
+    for (let word of words) {
+      // stripping out punctuation, whitespace, and capital letters
+      word = word.replace(/[^A-Za-z]+/g, "").toLowerCase();
 
-    // let correctGuess = dalle.phrase.includes(firstWord) && !lobby.correctGuesses.includes(firstWord);
-    // if (correctGuess) {
-    //   console.log("correct guess");
-    //   await this.lobbyRef.update({
-    //     correctGuesses: [
-    //       ...lobby.correctGuesses,
-    //       firstWord]
-    //   });
-    // }
+      if (word == "") {
+        continue;
+      }
+
+      let wrongGuess = !dalle.phrase.includes(word) && !updatedLobbyInfo.wrongGuesses.includes(word);;
+      if (wrongGuess) {
+        updatedLobbyInfo.wrongGuesses.push(word);
+      }
+
+      let correctGuess = dalle.phrase.includes(word) && !updatedLobbyInfo.correctGuesses.includes(word);
+      if (correctGuess) {
+        updatedLobbyInfo.correctGuesses.push(word);
+
+      }
+    }
+    this.guess = "";
+    this.placeholder = faker.random.word();
+    await this.lobbyService.updateLobby(updatedLobbyInfo);
   }
 
 }

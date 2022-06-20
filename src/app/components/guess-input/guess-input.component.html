@@ -1,9 +1,8 @@
-<p>lobbydoc in guess: {{lobbyService.lobbyDoc$|async|json}}</p>
+<!-- <p>lobbydoc in guess: {{lobbyService.lobbyDoc$|async|json}}</p> -->
 <div *ngIf="lobbyService.lobbyDoc$ | async as lobbyData; else loadingLobby">
   <div *ngIf="dalleService.dalleDoc$ | async as dalleData">
-    <label for="email" class="block text-sm font-medium text-gray-700">Enter Your <span
-        class="font-bold">One-Word</span>
-      Guess</label>
+    <label for="email" class="block text-sm font-medium text-gray-700">Enter your
+      guess:</label>
     <div class="mt-1 flex rounded-md shadow-sm">
       <div class="relative flex items-stretch flex-grow focus-within:z-10">
         <input (keyup.enter)="submitGuess(lobbyData,dalleData)" [(ngModel)]="guess"

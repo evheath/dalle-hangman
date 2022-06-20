@@ -30,4 +30,8 @@ export class LobbyService {
       })
     )
   }
+
+  public async updateLobby(lobby: Lobby) {
+    return this.lobbyRef.update(lobby);
+  }
 }
