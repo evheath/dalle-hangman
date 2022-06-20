@@ -1,1 +1,10 @@
-<p>right-guesses works!</p>
+<p>Right guesses:</p>
+<div *ngIf="lobbyService.lobbyDoc$|async as lobbyData">
+  <ul >
+  
+    <li *ngFor="let guess of lobbyData.correctGuesses">
+      {{guess}}
+    </li>
+    
+  </ul>
+</div>

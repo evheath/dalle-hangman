@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { LobbyService } from 'src/app/services/lobby.service';
 
 @Component({
   selector: 'app-wrong-guesses',
@@ -10,7 +11,9 @@ export class WrongGuessesComponent implements OnInit {
 
   @Input() guesses: string[] = [];
 
-  constructor() { }
+  constructor(
+    public lobbyService: LobbyService
+  ) { }
 
   ngOnInit(): void {
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LobbyService } from 'src/app/services/lobby.service';
 
 @Component({
   selector: 'app-right-guesses',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RightGuessesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public lobbyService: LobbyService
+  ) { }
 
   ngOnInit(): void {
   }
