@@ -1,9 +1,12 @@
-<p>dalle-images works!</p>
-<ul  class="grid grid-cols-3 gap-1">
-  <li class="relative" *ngFor="let url$ of urls">
-    <div
-      class="group block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
-      <img [src]="url$ | async" alt="" class="object-cover pointer-events-none">
-    </div>
-  </li>
-</ul>
+<!-- <p>dalle-images works!</p> -->
+<div>
+  <ul  class="grid grid-cols-3 gap-1">
+    <li class="relative" *ngFor="let url$ of urls$">
+      <div
+        class="group block w-full aspect-w-10 aspect-h-7 rounded-xl overflow-hidden">
+        <img [src]="url$ | async" alt="" class="object-cover pointer-events-none">
+      </div>
+    </li>
+  </ul>
+
+</div>
