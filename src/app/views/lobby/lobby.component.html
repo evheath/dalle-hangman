@@ -99,7 +99,7 @@
         <div class="absolute inset-0 py-6 px-4 sm:px-6 lg:px-8">
           <div class="h-full border-gray-700 rounded-lg bg-gray-200 relative flex flex-col items-center">
             <app-right-guesses></app-right-guesses>
-            <app-dalle-images class="sm:m-2"></app-dalle-images>
+            <app-dalle-images class="sm:m-2 md:max-w-lg lg:max-w-lg xl:max-w-2xl"></app-dalle-images>
             <app-guess-input class=" m-2 absolute inset-x-0 bottom-0"></app-guess-input>
           </div>
         </div>
@@ -108,7 +108,12 @@
     </div>
   </div>
 </div>
-
+<!-- container	None	width: 100%;
+sm (640px)	    max-width: 640px;
+md (768px)	    max-width: 768px;
+lg (1024px)	    max-width: 1024px;
+xl (1280px)	    max-width: 1280px;
+2xl (1536px)	  max-width: 1536px;  -->
 <!-- <app-right-guesses></app-right-guesses>
 <app-wrong-guesses></app-wrong-guesses>
 <app-next-dalle-button></app-next-dalle-button>
