@@ -22,6 +22,7 @@ import { ChangeNameComponent } from './components/change-name/change-name.compon
 import { UidToNamePipe } from './pipes/uid-to-name.pipe';
 import { NextDalleButtonComponent } from './components/next-dalle-button/next-dalle-button.component';
 import { AdventurerUrlPipe } from './pipes/adventurer-url.pipe';
+import { PhraseUnderscorePipe } from './pipes/phrase-underscore.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AdventurerUrlPipe } from './pipes/adventurer-url.pipe';
     UidToNamePipe,
     NextDalleButtonComponent,
     AdventurerUrlPipe,
+    PhraseUnderscorePipe,
   ],
   imports: [
     BrowserModule,

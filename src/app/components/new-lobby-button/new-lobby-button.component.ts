@@ -26,7 +26,7 @@ export class NewLobbyButtonComponent implements OnInit {
     // console.log("creating lobby");
     this.loading = true;
     let newLobby: Lobby = {
-      dalleId: "yqv0neMVXSjUATa2g6nl",
+      dalleId: "8AkD7jZfqST0B2z26BGX",
       wrongGuesses: [],
       correctGuesses: [],
       scoreboard: {}

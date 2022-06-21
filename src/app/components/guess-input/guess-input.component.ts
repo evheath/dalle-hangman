@@ -39,15 +39,9 @@ export class GuessInputComponent implements OnInit {
       if (wrongGuess) {
         lobby.wrongGuesses.push(word);
 
-        // subtract 1 from this user's score
-        if (lobby.scoreboard[uid]) {
-          console.log("we are on the board");
-
-          lobby.scoreboard[uid] -= 1;
-
-        } else {
-          console.log("we are not on the board");
-          lobby.scoreboard[uid] = -1;
+        // subtract 1 from this user's score, not sure if I want to do this
+        if (!lobby.scoreboard[uid]) {
+          lobby.scoreboard[uid] = 0;
         }
       }
 
@@ -57,12 +51,12 @@ export class GuessInputComponent implements OnInit {
 
         // add 1 from this user's score
         if (lobby.scoreboard[uid]) {
-          console.log("we are on the board");
+          // console.log("we are on the board");
 
           lobby.scoreboard[uid] += 1;
 
         } else {
-          console.log("we are not on the board");
+          // console.log("we are not on the board");
           lobby.scoreboard[uid] = 1;
         }
       }

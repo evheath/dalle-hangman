@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DalleService } from 'src/app/services/dalle.service';
 import { LobbyService } from 'src/app/services/lobby.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { LobbyService } from 'src/app/services/lobby.service';
 export class RightGuessesComponent implements OnInit {
 
   constructor(
-    public lobbyService: LobbyService
+    public lobbyService: LobbyService,
+    public dalleService: DalleService,
   ) { }
 
   ngOnInit(): void {
