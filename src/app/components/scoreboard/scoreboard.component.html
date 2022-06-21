@@ -1,9 +1,11 @@
-<div *ngIf="lobbyService.lobbyDoc$|async as lobbyData">
-  <div *ngFor="let score of lobbyData.scoreboard| keyvalue">
-    <img class="h-12" 
+<div  *ngIf="lobbyService.lobbyDoc$|async as lobbyData" class="font-medium text-sm text-gray-900">
+  Scoreboard:
+
+  <div class="text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md" *ngFor="let score of lobbyData.scoreboard| keyvalue">
+    <img class="inline-block h-10 w-10 rounded-full" 
     [src]="score.key | uidToName | async |adventurerUrl" 
     />
-    <p>{{score.key | uidToName | async}}: {{score.value}}</p>
+    {{score.key | uidToName | async}}: {{score.value}}
   </div>
 
 </div>
