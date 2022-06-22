@@ -24,6 +24,7 @@ import { NextDalleButtonComponent } from './components/next-dalle-button/next-da
 import { AdventurerUrlPipe } from './pipes/adventurer-url.pipe';
 import { PhraseUnderscorePipe } from './pipes/phrase-underscore.pipe';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { GenerateComponent } from './views/generate/generate.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     AdventurerUrlPipe,
     PhraseUnderscorePipe,
     SafeUrlPipe,
+    GenerateComponent,
   ],
   imports: [
     BrowserModule,
