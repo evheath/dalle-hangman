@@ -35,7 +35,7 @@ export class GuessInputComponent implements OnInit {
         continue;
       }
 
-      let wrongGuess = !dalle.phrase.includes(word) && !lobby.wrongGuesses.includes(word);;
+      let wrongGuess = !dalle.prompt.includes(word) && !lobby.wrongGuesses.includes(word);;
       if (wrongGuess) {
         lobby.wrongGuesses.push(word);
 
@@ -45,7 +45,7 @@ export class GuessInputComponent implements OnInit {
         }
       }
 
-      let correctGuess = dalle.phrase.includes(word) && !lobby.correctGuesses.includes(word);
+      let correctGuess = dalle.prompt.includes(word) && !lobby.correctGuesses.includes(word);
       if (correctGuess) {
         lobby.correctGuesses.push(word);
 

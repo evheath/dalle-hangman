@@ -23,9 +23,9 @@ import { UidToNamePipe } from './pipes/uid-to-name.pipe';
 import { NextDalleButtonComponent } from './components/next-dalle-button/next-dalle-button.component';
 import { AdventurerUrlPipe } from './pipes/adventurer-url.pipe';
 import { PhraseUnderscorePipe } from './pipes/phrase-underscore.pipe';
-import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { GenerateComponent } from './views/generate/generate.component';
 
+import { BlobToUrlPipe } from './pipes/blob-to-url.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +43,8 @@ import { GenerateComponent } from './views/generate/generate.component';
     NextDalleButtonComponent,
     AdventurerUrlPipe,
     PhraseUnderscorePipe,
-    SafeUrlPipe,
     GenerateComponent,
+    BlobToUrlPipe,
   ],
   imports: [
     BrowserModule,

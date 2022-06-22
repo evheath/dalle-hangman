@@ -1,3 +1,4 @@
 export interface Dalle {
-  phrase: string;
+  prompt: string;
+  images: string[];
 }

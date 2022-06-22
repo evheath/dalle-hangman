@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, shareReplay, switchMap, of } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { Dalle } from 'src/app/models';
 import { LobbyService } from './lobby.service';
 
@@ -9,24 +9,28 @@ import { LobbyService } from './lobby.service';
   providedIn: 'root'
 })
 export class DalleService {
-  public dalleDoc$: Observable<Dalle>;
+  private dalleId: string = "";
+  public dalleDoc$: BehaviorSubject<Dalle | null> = new BehaviorSubject<Dalle | null>(null);
+  private subs: Subscription = new Subscription();
 
   constructor(
     private lobbyService: LobbyService,
     private db: AngularFirestore,
   ) {
-    this.dalleDoc$ = this.lobbyService.lobbyDoc$.pipe(
-      switchMap(lobby => {
-        if (lobby) {
-          // this is naive because the lobby will be changing frequently
-          // ideally we would want to listen if the dalleId changes
-          return this.db.doc<Dalle>(`dalle/${lobby.dalleId}`).valueChanges() as Observable<Dalle>
-        } else {
-          return new Observable<Dalle>()
-        }
-      }),
-      shareReplay(1),
-    )
+    this.lobbyService.lobbyDoc$.subscribe(lobbyDoc => {
+      if (lobbyDoc && lobbyDoc.dalleId != this.dalleId) {
+        this.dalleId = lobbyDoc.dalleId;
+        this.subs.unsubscribe();
+        this.subs = new Subscription();
+        this.subs.add(
+          this.db.doc<Dalle>(`dalle/${this.dalleId}`).valueChanges().subscribe(dalle => {
+            if (dalle) {
+              this.dalleDoc$.next(dalle);
+            }
+          }
+          ))
+      }
+    })
   }
 
 }

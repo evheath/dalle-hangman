@@ -2,15 +2,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Pipe({
-  name: 'safeUrl'
+  name: 'blobToUrl'
 })
-export class SafeUrlPipe implements PipeTransform {
-
+export class BlobToUrlPipe implements PipeTransform {
   constructor(
     private sanitizer: DomSanitizer
   ) { }
 
-  transform(value: string) {
+  transform(blob: string) {
+    const value = `data:image/png;base64,${blob}`;
     return this.sanitizer.bypassSecurityTrustUrl(value);
   }
 
