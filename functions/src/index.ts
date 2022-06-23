@@ -3,13 +3,13 @@ import axios from "axios";
 import * as admin from "firebase-admin";
 admin.initializeApp(); // only needs to be done once (within any file)
 const db = admin.firestore();
-import {Dalle} from "library";
+import {Dalle, assimilatePrompt} from "library";
 
-const assimilatePrompt = (prompt: string): string => {
-  return prompt.split(" ")
-      .map((word) => word.replace(/[^A-Za-z]+/g, "").toLowerCase())
-      .join(" ");
-};
+// const assimilatePrompt = (prompt: string): string => {
+//   return prompt.split(" ")
+//       .map((word) => word.replace(/[^A-Za-z]+/g, "").toLowerCase())
+//       .join(" ");
+// };
 
 export const onSubmissionCreation = functions
     .runWith({timeoutSeconds: 300})

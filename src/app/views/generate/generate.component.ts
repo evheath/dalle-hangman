@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenerateComponent implements OnInit {
 
-  public newPhrase = "Monkey eating a pineapple";
+  public newPrompt = "Monkey eating a pineapple";
   constructor(
   ) { }
 
@@ -14,7 +14,7 @@ export class GenerateComponent implements OnInit {
   }
 
   public submitPhrase() {
-    console.log(`submitting phrase: ${this.newPhrase}`);
+    console.log(`submitting phrase: ${this.newPrompt}`);
   }
 
 }

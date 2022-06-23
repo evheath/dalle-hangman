@@ -26,6 +26,7 @@ import { PhraseUnderscorePipe } from './pipes/phrase-underscore.pipe';
 import { GenerateComponent } from './views/generate/generate.component';
 
 import { BlobToUrlPipe } from './pipes/blob-to-url.pipe';
+import { AssimilatePromptPipe } from './pipes/assimilate-prompt.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { BlobToUrlPipe } from './pipes/blob-to-url.pipe';
     PhraseUnderscorePipe,
     GenerateComponent,
     BlobToUrlPipe,
+    AssimilatePromptPipe,
   ],
   imports: [
     BrowserModule,
