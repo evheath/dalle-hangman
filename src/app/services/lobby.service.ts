@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Lobby } from 'library';
+import { faker } from '@faker-js/faker';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,16 @@ export class LobbyService {
   constructor(
     private db: AngularFirestore,
   ) {
+  }
+
+  public async randomDalleId(): Promise<string> {
+    const query = await this.db.collection('dalle',
+      ref => ref.where('__name__', '>=', faker.random.word())
+        .limit(1)
+    ).get().toPromise();
+    return query && !query.empty
+      ? query.docs[0].id
+      : "idQBL5Em26JB4Dkjiivf";
   }
 
   public newLobby(lobbyId: string) {

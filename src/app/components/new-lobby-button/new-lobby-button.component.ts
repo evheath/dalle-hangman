@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Lobby } from 'library';
+import { LobbyService } from 'src/app/services/lobby.service';
 
 @Component({
   selector: 'app-new-lobby-button',
@@ -14,19 +15,18 @@ export class NewLobbyButtonComponent implements OnInit {
   constructor(
     private db: AngularFirestore,
     private router: Router,
+    private lobbyService: LobbyService
   ) { }
 
   ngOnInit(): void {
   }
 
-  /**
-   * createLobby
-   */
   public async createLobby() {
-    // console.log("creating lobby");
     this.loading = true;
-    let newLobby: Lobby = {
-      dalleId: "idQBL5Em26JB4Dkjiivf",
+    const dalleId = await this.lobbyService.randomDalleId();
+
+    const newLobby: Lobby = {
+      dalleId,
       wrongGuesses: [],
       correctGuesses: [],
       scoreboard: {}
