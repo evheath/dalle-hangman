@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { faker } from '@faker-js/faker';
 import { assimilatePrompt } from 'library';
 @Component({
   selector: 'app-generate',
@@ -8,18 +9,38 @@ import { assimilatePrompt } from 'library';
 })
 export class GenerateComponent implements OnInit {
 
-  public newPrompt = "Monkey eating a pineapple";
+  public newPrompt = "";
+  public placeholder: string = "";
   constructor(
     private db: AngularFirestore
-  ) { }
+  ) {
+    this.newPlaceholder();
+  }
 
   ngOnInit(): void {
   }
 
+  public newPlaceholder() {
+    this.placeholder = `${faker.word.adjective()} ${faker.word.noun()} ${faker.word.preposition()} a ${faker.word.noun()}`;
+  }
+
+
+
+  public get prompt(): string {
+    return this.newPrompt.length >= 1
+      ? assimilatePrompt(this.newPrompt)
+      : assimilatePrompt(this.placeholder);
+  }
+
+
   public async submitPhrase() {
-    const prompt = assimilatePrompt(this.newPrompt);
-    console.log(`submitting : ${prompt}`);
-    await this.db.collection('submissions').add({ prompt })
+    // this.prompt
+    // // const prompt = 
+    // console.log(`submitting : ${this.prompt}`);
+    await this.db.doc(`submissions/${this.prompt}`).set({});
+    // .set({
+    //   prompt: this.prompt
+    // })
 
   }
 

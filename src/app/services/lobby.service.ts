@@ -24,7 +24,7 @@ export class LobbyService {
     ).get().toPromise();
     return query && !query.empty
       ? query.docs[0].id
-      : "idQBL5Em26JB4Dkjiivf";
+      : "astronaut riding a bike on the moon";
   }
 
   public newLobby(lobbyId: string) {
