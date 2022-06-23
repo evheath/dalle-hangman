@@ -16,9 +16,10 @@ export class GenerateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public submitPhrase() {
+  public async submitPhrase() {
     const prompt = assimilatePrompt(this.newPrompt);
     console.log(`submitting : ${prompt}`);
+    await this.db.collection('submissions').add({ prompt })
 
   }
 
