@@ -1,7 +1,9 @@
 <div *ngIf="lobbyService.lobbyDoc$|async as lobbyData"
-  class="flex justify-center font-medium text-base sm:text-3xl text-gray-700 m-1 sm:m-4">
+  class="flex justify-center items-center font-medium text-base sm:text-3xl text-gray-700 m-1 sm:m-4">
   <div class="mx-1 font-mono" *ngIf="dalleService.dalleDoc$|async as dalleData">
     {{dalleData.prompt| phraseUnderscore:lobbyData.correctGuesses}}
   </div>
+  <button (click)="goNext()" class="ml-4 btn-primary" [disabled]="this.loading" [ngClass]="{'cursor-wait':loading}">Go
+    next</button>
 
 </div>

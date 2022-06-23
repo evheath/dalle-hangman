@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Lobby } from 'library';
-import { faker } from '@faker-js/faker';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +16,36 @@ export class LobbyService {
   ) {
   }
 
+  public async goNext() {
+    const newDalleId = await this.randomDalleId();
+    this.lobbyRef.update({
+      dalleId: newDalleId,
+    })
+
+  }
+
+  private randomLetter(): string {
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    let randomNum = Math.floor(Math.random() * alphabet.length)
+
+    return alphabet[randomNum];
+  }
+
+
   public async randomDalleId(): Promise<string> {
+    console.log(`${this.randomLetter()}`);
+
     const query = await this.db.collection('dalle',
-      ref => ref.where('__name__', '>=', faker.random.word())
+      ref => ref.where('__name__', '>=', `${this.randomLetter()}`)
         .limit(1)
     ).get().toPromise();
-    return query && !query.empty
-      ? query.docs[0].id
-      : "astronaut riding a bike on the moon";
+    if (query && !query.empty) {
+      // console.log(`succesful query: ${query.docs[0].id}`);
+      return query.docs[0].id
+    } else {
+      // console.log(`unsuccesful query`);
+      return "astronaut riding a bike on the moon";
+    }
   }
 
   public newLobby(lobbyId: string) {

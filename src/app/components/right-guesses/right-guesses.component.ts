@@ -8,6 +8,7 @@ import { LobbyService } from 'src/app/services/lobby.service';
   styleUrls: ['./right-guesses.component.css']
 })
 export class RightGuessesComponent implements OnInit {
+  public loading: boolean = false;
 
   constructor(
     public lobbyService: LobbyService,
@@ -16,5 +17,12 @@ export class RightGuessesComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  public async goNext() {
+    this.loading = true;
+    await this.lobbyService.goNext();
+    this.loading = false;
+  }
+
 
 }
