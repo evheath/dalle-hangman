@@ -24,6 +24,7 @@
     "@angular/router": "^14.0.0",
     "@tailwindcss/forms": "^0.5.2",
     "firebase": "^9.8.3",
+    "library": "file:library",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

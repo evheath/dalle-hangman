@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Lobby } from 'src/app/models';
+import { Lobby } from 'library';
 
 @Injectable({
   providedIn: 'root'

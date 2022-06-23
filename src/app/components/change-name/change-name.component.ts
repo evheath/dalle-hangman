@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faker } from '@faker-js/faker';
-import { User } from 'src/app/models/user.model';
+import { User } from 'library';
 import { AuthService } from 'src/app/services/auth.service';
 
 

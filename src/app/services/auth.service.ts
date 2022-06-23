@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Observable, of, switchMap, tap } from 'rxjs';
 
 import { faker } from '@faker-js/faker';
-import { User } from '../models/user.model';
+import { User } from 'library';
 @Injectable({
   providedIn: 'root'
 })

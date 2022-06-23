@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Dalle } from 'src/app/models';
+import { Dalle } from 'library';
 import { LobbyService } from './lobby.service';
 
 

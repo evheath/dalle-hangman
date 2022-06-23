@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { Lobby } from 'src/app/models';
+import { Lobby } from 'library';
 
 @Component({
   selector: 'app-new-lobby-button',

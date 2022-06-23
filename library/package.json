@@ -1,0 +1,14 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -f ./*.js ./*.d.ts",
+    "build": "npm run clean && tsc index.ts -d"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Dalle, Lobby } from 'src/app/models';
+import { Dalle, Lobby } from 'library';
 import { faker } from '@faker-js/faker';
 import { LobbyService } from 'src/app/services/lobby.service';
 import { DalleService } from 'src/app/services/dalle.service';

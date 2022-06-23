@@ -1,11 +1,22 @@
 import * as functions from "firebase-functions";
 import axios from "axios";
+import * as admin from "firebase-admin";
+admin.initializeApp(); // only needs to be done once (within any file)
+const db = admin.firestore();
+import {Dalle} from "library";
 
-export const onDalleDocumentCreation = functions
+const assimilatePrompt = (prompt: string): string => {
+  return prompt.split(" ")
+      .map((word) => word.replace(/[^A-Za-z]+/g, "").toLowerCase())
+      .join(" ");
+};
+
+export const onSubmissionCreation = functions
     .runWith({timeoutSeconds: 300})
-    .firestore.document("dalle/{dalleId}")
+    .firestore.document("submissions/{submissionId}")
     .onCreate(async (snapshot, context) => {
-      const {prompt} = snapshot.data();
+      let prompt: string = snapshot.data().prompt;
+      prompt = assimilatePrompt(prompt);
       const data = {
         prompt,
       };
@@ -17,5 +28,9 @@ export const onDalleDocumentCreation = functions
       };
       const res = await axios.post("https://backend.craiyon.com/generate", data, options);
       const {images} = res.data;
-      return snapshot.ref.update({images});
+      const dalle: Dalle = {
+        images,
+        prompt,
+      };
+      return db.collection("dalle").add(dalle);
     });

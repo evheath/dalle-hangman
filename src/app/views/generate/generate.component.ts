@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-generate',
   templateUrl: './generate.component.html',
@@ -7,9 +6,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenerateComponent implements OnInit {
 
-  constructor() { }
+  public newPhrase = "Monkey eating a pineapple";
+  constructor(
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  public submitPhrase() {
+    console.log(`submitting phrase: ${this.newPhrase}`);
   }
 
 }

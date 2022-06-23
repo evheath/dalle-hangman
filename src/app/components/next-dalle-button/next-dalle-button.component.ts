@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Lobby } from 'src/app/models';
+import { Lobby } from 'library';
 import { LobbyService } from 'src/app/services/lobby.service';
 
 @Component({
