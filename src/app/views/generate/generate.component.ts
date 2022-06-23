@@ -2,17 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { faker } from '@faker-js/faker';
 import { assimilatePrompt } from 'library';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-generate',
   templateUrl: './generate.component.html',
   styleUrls: ['./generate.component.css']
 })
 export class GenerateComponent implements OnInit {
-
+  public lastSubmitted: string = "";
   public newPrompt = "";
   public placeholder: string = "";
   constructor(
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private snackBar: MatSnackBar
   ) {
     this.newPlaceholder();
   }
@@ -37,7 +39,14 @@ export class GenerateComponent implements OnInit {
     // this.prompt
     // // const prompt = 
     // console.log(`submitting : ${this.prompt}`);
-    await this.db.doc(`submissions/${this.prompt}`).set({});
+    this.db.doc(`submissions/${this.prompt}`).set({}).then(success => {
+      this.lastSubmitted = this.prompt;
+      this.snackBar.open(`Successful submission`, "Dismiss", {
+        duration: 2000,
+      })
+    }).catch(err => {
+      this.snackBar.open(`Error submitting`, "Dismiss")
+    })
     // .set({
     //   prompt: this.prompt
     // })

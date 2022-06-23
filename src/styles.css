@@ -2,7 +2,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 .btn-primary {
   @apply items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+}
+.btn-secondary {
+  @apply items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-black bg-neutral-200 shadow-sm hover:bg-neutral-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-500
+}
+html, body {
+  height: 100%;
 }

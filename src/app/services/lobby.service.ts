@@ -33,7 +33,6 @@ export class LobbyService {
 
 
   public async randomDalleId(): Promise<string> {
-    console.log(`${this.randomLetter()}`);
 
     const query = await this.db.collection('dalle',
       ref => ref.where('__name__', '>=', `${this.randomLetter()}`)

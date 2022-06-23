@@ -27,6 +27,8 @@ import { GenerateComponent } from './views/generate/generate.component';
 
 import { BlobToUrlPipe } from './pipes/blob-to-url.pipe';
 import { AssimilatePromptPipe } from './pipes/assimilate-prompt.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +56,8 @@ import { AssimilatePromptPipe } from './pipes/assimilate-prompt.pipe';
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
     AngularFireStorageModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
