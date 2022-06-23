@@ -29,6 +29,7 @@ import { BlobToUrlPipe } from './pipes/blob-to-url.pipe';
 import { AssimilatePromptPipe } from './pipes/assimilate-prompt.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FormsModule,
     AngularFireStorageModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

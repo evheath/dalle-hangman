@@ -1,6 +1,6 @@
-<ul class="grid grid-cols-3 gap-1" *ngIf="dalleService.dalleDoc$|async as dalleData">
+<ul class="grid grid-cols-3 gap-1">
   <li class="relative" *ngFor="let image of dalleData.images">
-    <div class="group block w-full aspect-square rounded-xl overflow-hidden">
+    <div class="group block w-full aspect-square rounded-xl">
       <img [src]="image | blobToUrl" alt="" class="object-cover pointer-events-none">
     </div>
   </li>

@@ -1,8 +1,8 @@
-<!-- page container -->
+<!-- page card background -->
 <div
-  class="flex flex-col text-center justify-center items-center gap-4 max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 bg-white dark:bg-zinc-500 h-screen">
+  class="flex flex-col text-center justify-center items-center gap-4 max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 bg-gray-200">
   <!-- input card -->
-  <div class="shadow sm:rounded-lg bg-gray-100">
+  <div class="shadow sm:rounded-lg bg-gray-300">
     <div class="px-4 py-5 sm:p-6">
       <h3 class="text-lg leading-6 font-medium text-gray-900">Submit a new hangman prompt</h3>
       <div class="mt-2 max-w-xl text-sm text-gray-500">
@@ -29,10 +29,17 @@
   </div>
 
 
+</div>
 
+<!-- submission background -->
+<div *ngIf="lastSubmitted"
+  class="flex flex-col text-center justify-center items-center gap-4 max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8 bg-gray-300">
   <h1 class="text-xl m-6" *ngIf="lastSubmitted">
     <span class="font-serif">Submitted: </span> <span class="font-sans">{{lastSubmitted | assimilatePrompt}}</span>
-
   </h1>
+  <app-dalle-images *ngIf="dalle$|async as dalleData; else spinner" [dalleData]="dalleData"></app-dalle-images>
+  <ng-template #spinner>
+    <mat-spinner></mat-spinner>
+  </ng-template>
 
 </div>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Dalle } from 'library';
 import { Observable } from 'rxjs';
 import { DalleService } from 'src/app/services/dalle.service';
 
@@ -10,7 +11,7 @@ import { DalleService } from 'src/app/services/dalle.service';
 })
 export class DalleImagesComponent implements OnInit {
 
-  public urls$: Observable<any>[] = [];
+  @Input() dalleData: Dalle = {} as Dalle;
 
   constructor(
     public storage: AngularFireStorage,

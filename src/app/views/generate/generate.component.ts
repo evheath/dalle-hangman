@@ -3,12 +3,14 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { faker } from '@faker-js/faker';
 import { assimilatePrompt } from 'library';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable, of } from 'rxjs';
 @Component({
   selector: 'app-generate',
   templateUrl: './generate.component.html',
   styleUrls: ['./generate.component.css']
 })
 export class GenerateComponent implements OnInit {
+  public dalle$: Observable<any> = of(null);
   public lastSubmitted: string = "";
   public newPrompt = "";
   public placeholder: string = "";
@@ -36,20 +38,15 @@ export class GenerateComponent implements OnInit {
 
 
   public async submitPhrase() {
-    // this.prompt
-    // // const prompt = 
-    // console.log(`submitting : ${this.prompt}`);
     this.db.doc(`submissions/${this.prompt}`).set({}).then(success => {
       this.lastSubmitted = this.prompt;
       this.snackBar.open(`Successful submission`, "Dismiss", {
         duration: 2000,
       })
+      this.dalle$ = this.db.doc(`dalle/${this.prompt}`).valueChanges();
     }).catch(err => {
       this.snackBar.open(`Error submitting`, "Dismiss")
     })
-    // .set({
-    //   prompt: this.prompt
-    // })
 
   }
 
