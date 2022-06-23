@@ -24,6 +24,7 @@ export interface Dalle {
 export function assimilatePrompt(prompt: string): string {
   return prompt.split(" ")
     .map(word => word.replace(/[^A-Za-z]+/g, "").toLowerCase())
+    .filter(word => word.length > 0)
     .join(" ");
 
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { assimilatePrompt } from 'library';
 @Component({
   selector: 'app-generate',
   templateUrl: './generate.component.html',
@@ -8,13 +10,16 @@ export class GenerateComponent implements OnInit {
 
   public newPrompt = "Monkey eating a pineapple";
   constructor(
+    private db: AngularFirestore
   ) { }
 
   ngOnInit(): void {
   }
 
   public submitPhrase() {
-    console.log(`submitting phrase: ${this.newPrompt}`);
+    const prompt = assimilatePrompt(this.newPrompt);
+    console.log(`submitting : ${prompt}`);
+
   }
 
 }
