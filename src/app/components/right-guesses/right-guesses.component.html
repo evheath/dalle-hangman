@@ -3,6 +3,9 @@
   <div class="mx-1 font-mono" *ngIf="dalleService.dalleDoc$|async as dalleData">
     {{dalleData.prompt| phraseUnderscore:lobbyData.correctGuesses}}
   </div>
+  <button (click)="newer()" class="ml-4 btn-primary" [disabled]="this.loading" [ngClass]="{'cursor-wait':loading}">
+    Newer
+  </button>
   <button (click)="older()" class="ml-4 btn-primary" [disabled]="this.loading" [ngClass]="{'cursor-wait':loading}">
     Older
   </button>

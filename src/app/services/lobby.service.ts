@@ -26,48 +26,39 @@ export class LobbyService {
   }
 
   public async goToOlderDalle() {
-    const olderDalleId = await this.olderDalleId();
-    this.changeDalle(olderDalleId);
+    const olderDalleId = await this.getNextDalleId(false, this.timestampCursor);
+    if (olderDalleId) {
+      this.changeDalle(olderDalleId);
 
-  }
-
-
-
-  public async olderDalleId(): Promise<string> {
-
-    const query = await this.db.collection<Dalle>('dalle',
-      ref => ref
-        .orderBy('timestamp', 'desc')
-        .limit(1)
-        .startAfter(this.timestampCursor)
-    ).get().toPromise();
-    if (query && !query.empty) {
-      let timestamp = query.docs[0].data().timestamp
-      if (timestamp) {
-        this.timestampCursor = timestamp
-
-      }
-      return query.docs[0].id
-    } else {
-      return "";
     }
+
+  }
+  public async goToNewerDalle() {
+    const newerDalleId = await this.getNextDalleId(true, this.timestampCursor);
+    if (newerDalleId) {
+      this.changeDalle(newerDalleId);
+
+    }
+
   }
 
-  public async newestDalleId(): Promise<string> {
+
+  public async getNextDalleId(newer: boolean = true, cursor: number = Date.now()): Promise<string | null> {
 
     const query = await this.db.collection<Dalle>('dalle',
       ref => ref
-        .orderBy('timestamp', 'desc')
+        .orderBy('timestamp', newer ? 'asc' : 'desc')
         .limit(1)
+        .startAfter(cursor)
     ).get().toPromise();
+
     if (query && !query.empty) {
       this.timestampCursor = query.docs[0].data().timestamp
-
       return query.docs[0].id
-    } else {
-      return "beer and mario kart";
     }
+    return null
   }
+
 
   public newLobby(lobbyId: string) {
     this.lobbyRef = this.db.doc<Lobby>(`lobbies/${lobbyId}`);

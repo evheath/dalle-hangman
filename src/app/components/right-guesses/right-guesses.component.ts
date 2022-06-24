@@ -23,6 +23,10 @@ export class RightGuessesComponent implements OnInit {
     await this.lobbyService.goToOlderDalle();
     this.loading = false;
   }
-
+  public async newer() {
+    this.loading = true;
+    await this.lobbyService.goToNewerDalle();
+    this.loading = false;
+  }
 
 }
