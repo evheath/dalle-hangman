@@ -19,13 +19,15 @@ export class LobbyService {
   public async goNext() {
     const newDalleId = await this.randomDalleId();
     this.lobbyRef.update({
+      correctGuesses: [],
+      wrongGuesses: [],
       dalleId: newDalleId,
     })
 
   }
 
   private randomLetter(): string {
-    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    const alphabet = "abcdefghijklmnopqrstuvwxyz"
     let randomNum = Math.floor(Math.random() * alphabet.length)
 
     return alphabet[randomNum];
