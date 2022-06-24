@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { faker } from '@faker-js/faker';
-import { assimilatePrompt } from 'library';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
+import { AssimilatePromptPipe } from 'src/app/pipes/assimilate-prompt.pipe';
 @Component({
   selector: 'app-generate',
   templateUrl: './generate.component.html',
-  styleUrls: ['./generate.component.css']
+  styleUrls: ['./generate.component.css'],
+  providers: [AssimilatePromptPipe]
 })
 export class GenerateComponent implements OnInit {
   public dalle$: Observable<any> = of(null);
@@ -16,7 +17,8 @@ export class GenerateComponent implements OnInit {
   public placeholder: string = "";
   constructor(
     private db: AngularFirestore,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private assimilatePipe: AssimilatePromptPipe
   ) {
     this.newPlaceholder();
   }
@@ -32,8 +34,8 @@ export class GenerateComponent implements OnInit {
 
   public get prompt(): string {
     return this.newPrompt.length >= 1
-      ? assimilatePrompt(this.newPrompt)
-      : assimilatePrompt(this.placeholder);
+      ? this.assimilatePipe.transform(this.newPrompt)
+      : this.assimilatePipe.transform(this.placeholder);
   }
 
 

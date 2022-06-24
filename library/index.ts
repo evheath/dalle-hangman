@@ -17,11 +17,3 @@ export interface Lobby {
 }
 
 export { Dalle } from './dalle.model';
-
-export function assimilatePrompt(prompt: string): string {
-  return prompt.split(" ")
-    .map(word => word.replace(/[^A-Za-z]+/g, "").toLowerCase())
-    .filter(word => word.length > 0)
-    .join(" ");
-
-}

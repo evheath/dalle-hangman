@@ -1,13 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { assimilatePrompt } from 'library';
 
 @Pipe({
   name: 'assimilatePrompt'
 })
 export class AssimilatePromptPipe implements PipeTransform {
 
-  transform(value: string): string {
-    return assimilatePrompt(value);
+  public transform(value: string): string {
+    return value.split(" ")
+      .map(word => word.toLowerCase().replace(/[^a-z]+/g, ""))
+      .filter(word => word.length > 0)
+      .join(" ");
   }
 
 }

@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Dalle, Lobby } from 'library';
-import { Timestamp } from "firebase/firestore";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LobbyService {
   private subs: Subscription = new Subscription();
-  private timestampCursor: Timestamp = Timestamp.now();
+  private timestampCursor: number = Date.now();
   private lobbyRef!: AngularFirestoreDocument<Lobby>;
   public lobbyDoc$: BehaviorSubject<Lobby | null> = new BehaviorSubject<Lobby | null>(null);
 

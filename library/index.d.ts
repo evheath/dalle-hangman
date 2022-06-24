@@ -14,4 +14,3 @@ export interface Lobby {
     };
 }
 export { Dalle } from './dalle.model';
-export declare function assimilatePrompt(prompt: string): string;
