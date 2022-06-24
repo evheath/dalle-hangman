@@ -30,6 +30,16 @@ export class RightGuessesComponent implements OnInit {
     this.loading = false;
   }
 
+  public async hint(lobby: Lobby, dalle: Dalle) {
+    this.loading = true;
+    let word = dalle.prompt.split(" ").find(word => !lobby.correctGuesses.includes(word));
+    if (word) {
+      lobby.correctGuesses.push(word);
+      await this.lobbyService.updateLobby(lobby)
+    }
+    this.loading = false;
+  }
+
   public async older() {
     this.loading = true;
     await this.lobbyService.goToOlderDalle();
