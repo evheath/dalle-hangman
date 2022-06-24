@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Dalle, Lobby } from 'library';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class LobbyService {
 
   constructor(
     private db: AngularFirestore,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -30,6 +32,8 @@ export class LobbyService {
     if (olderDalleId) {
       this.changeDalle(olderDalleId);
 
+    } else {
+      this.snackBar.open("You've reached the oldest", "Dismiss", { duration: 3000 });
     }
 
   }
@@ -38,6 +42,8 @@ export class LobbyService {
     if (newerDalleId) {
       this.changeDalle(newerDalleId);
 
+    } else {
+      this.snackBar.open("You've reached the newest", "Dismiss", { duration: 3000 });
     }
 
   }
