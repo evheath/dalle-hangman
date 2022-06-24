@@ -29,7 +29,7 @@ export class GuessInputComponent implements OnInit {
 
     for (let word of words) {
       // stripping out punctuation, whitespace, and capital letters
-      word = word.replace(/[^A-Za-z]+/g, "").toLowerCase();
+      word = word.toLowerCase().replace(/[^a-z]+/g, "");
 
       if (word == "") {
         continue;
