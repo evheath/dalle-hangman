@@ -10,5 +10,8 @@
     "build": "npm run clean && tsc index.ts -d && npm pack --pack-destination ../functions"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^9.8.4"
+  }
 }
