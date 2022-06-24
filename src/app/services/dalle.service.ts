@@ -26,6 +26,7 @@ export class DalleService {
           this.db.doc<Dalle>(`dalle/${this.dalleId}`).valueChanges().subscribe(dalle => {
             if (dalle) {
               this.dalleDoc$.next(dalle);
+              lobbyService.setTimestampCursor(dalle.timestamp);
             }
           }
           ))

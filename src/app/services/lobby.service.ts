@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LobbyService {
   private subs: Subscription = new Subscription();
-  private timestampCursor: number = Date.now();
+  private timestampCursor: number = 0;
   private lobbyRef!: AngularFirestoreDocument<Lobby>;
   public lobbyDoc$: BehaviorSubject<Lobby | null> = new BehaviorSubject<Lobby | null>(null);
 
@@ -17,6 +17,10 @@ export class LobbyService {
     private db: AngularFirestore,
     private snackBar: MatSnackBar,
   ) {
+  }
+
+  public setTimestampCursor(timestamp: number) {
+    this.timestampCursor = timestamp;
   }
 
   private async changeDalle(dalleId: string) {
@@ -59,7 +63,8 @@ export class LobbyService {
     ).get().toPromise();
 
     if (query && !query.empty) {
-      this.timestampCursor = query.docs[0].data().timestamp
+      // this.timestampCursor = query.docs[0].data().timestamp
+      this.setTimestampCursor(query.docs[0].data().timestamp);
       return query.docs[0].id
     }
     return null
