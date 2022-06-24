@@ -16,10 +16,7 @@ export interface Lobby {
   }
 }
 
-export interface Dalle {
-  prompt: string;
-  images: string[];
-}
+export { Dalle } from './dalle.model';
 
 export function assimilatePrompt(prompt: string): string {
   return prompt.split(" ")

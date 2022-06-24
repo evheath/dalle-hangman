@@ -18,9 +18,9 @@ export class RightGuessesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public async goNext() {
+  public async older() {
     this.loading = true;
-    await this.lobbyService.goNext();
+    await this.lobbyService.goToOlderDalle();
     this.loading = false;
   }
 

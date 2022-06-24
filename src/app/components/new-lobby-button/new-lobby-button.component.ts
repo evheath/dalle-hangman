@@ -23,7 +23,7 @@ export class NewLobbyButtonComponent implements OnInit {
 
   public async createLobby() {
     this.loading = true;
-    const dalleId = await this.lobbyService.randomDalleId();
+    const dalleId = await this.lobbyService.newestDalleId();
 
     const newLobby: Lobby = {
       dalleId,

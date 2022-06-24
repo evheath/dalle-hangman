@@ -1,51 +1,71 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Lobby } from 'library';
+import { Dalle, Lobby } from 'library';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LobbyService {
+  private subs: Subscription = new Subscription();
+  private timestampCursor: number = 0;
   private lobbyRef!: AngularFirestoreDocument<Lobby>;
   public lobbyDoc$: BehaviorSubject<Lobby | null> = new BehaviorSubject<Lobby | null>(null);
-  private subs: Subscription = new Subscription();
 
   constructor(
     private db: AngularFirestore,
   ) {
   }
 
-  public async goNext() {
-    const newDalleId = await this.randomDalleId();
+  private async changeDalle(dalleId: string) {
     this.lobbyRef.update({
       correctGuesses: [],
       wrongGuesses: [],
-      dalleId: newDalleId,
+      dalleId: dalleId,
     })
+  }
+
+  public async goToOlderDalle() {
+    const olderDalleId = await this.olderDalleId();
+    this.changeDalle(olderDalleId);
 
   }
 
-  private randomLetter(): string {
-    const alphabet = "abcdefghijklmnopqrstuvwxyz"
-    let randomNum = Math.floor(Math.random() * alphabet.length)
 
-    return alphabet[randomNum];
+
+  public async olderDalleId(): Promise<string> {
+
+    const query = await this.db.collection<Dalle>('dalle',
+      ref => ref
+        .orderBy('timestamp', 'desc')
+        .limit(1)
+        .startAfter(this.timestampCursor)
+    ).get().toPromise();
+    if (query && !query.empty) {
+      let timestamp = query.docs[0].data().timestamp
+      if (timestamp) {
+        this.timestampCursor = timestamp
+
+      }
+      return query.docs[0].id
+    } else {
+      return "";
+    }
   }
 
+  public async newestDalleId(): Promise<string> {
 
-  public async randomDalleId(): Promise<string> {
-
-    const query = await this.db.collection('dalle',
-      ref => ref.where('__name__', '>=', `${this.randomLetter()}`)
+    const query = await this.db.collection<Dalle>('dalle',
+      ref => ref
+        .orderBy('timestamp', 'desc')
         .limit(1)
     ).get().toPromise();
     if (query && !query.empty) {
-      // console.log(`succesful query: ${query.docs[0].id}`);
+      this.timestampCursor = query.docs[0].data().timestamp
+
       return query.docs[0].id
     } else {
-      // console.log(`unsuccesful query`);
-      return "astronaut riding a bike on the moon";
+      return "beer and mario kart";
     }
   }
 

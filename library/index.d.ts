@@ -13,8 +13,5 @@ export interface Lobby {
         [key: string]: number;
     };
 }
-export interface Dalle {
-    prompt: string;
-    images: string[];
-}
+export { Dalle } from './dalle.model';
 export declare function assimilatePrompt(prompt: string): string;
