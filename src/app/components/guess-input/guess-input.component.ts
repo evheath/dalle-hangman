@@ -26,10 +26,11 @@ export class GuessInputComponent implements OnInit {
   public async submitGuess(lobby: Lobby, dalle: Dalle) {
     const newCorrectGuesses: string[] = [];
     const newWrongGuesses: string[] = [];
-    let words = this.guess ? this.guess.split(" ") : [this.placeholder];
     let me = await this.authService.me$.getValue();
     let uid = me!.uid;
+    let newScore = lobby.scoreboard[uid] ? lobby.scoreboard[uid] : 0;
 
+    let words = this.guess ? this.guess.split(" ") : [this.placeholder];
     for (let word of words) {
       // stripping out punctuation, whitespace, and capital letters
       word = word.toLowerCase().replace(/[^a-z]+/g, "");
@@ -40,38 +41,21 @@ export class GuessInputComponent implements OnInit {
 
       let wrongGuess = !dalle.prompt.includes(word) && !lobby.wrongGuesses.includes(word);;
       if (wrongGuess) {
-        // lobby.wrongGuesses.push(word);
         newWrongGuesses.push(word);
-
-        // subtract 1 from this user's score, not sure if I want to do this
-        if (!lobby.scoreboard[uid]) {
-          lobby.scoreboard[uid] = 0;
-        }
       }
 
       let correctGuess = dalle.prompt.includes(word) && !lobby.correctGuesses.includes(word);
       if (correctGuess) {
-        // lobby.correctGuesses.push(word);
         newCorrectGuesses.push(word);
-
-        // add 1 from this user's score
-        if (lobby.scoreboard[uid]) {
-          // console.log("we are on the board");
-
-          lobby.scoreboard[uid] += 1;
-
-        } else {
-          // console.log("we are not on the board");
-          lobby.scoreboard[uid] = 1;
-        }
+        newScore += 1
       }
     }
-    console.log(newWrongGuesses);
-
     this.guess = "";
     this.placeholder = faker.random.word();
+    let scoreboardDotUid = "scoreboard." + uid;
     await this.lobbyService.updateLobby({
-      // absolute hack for typescript to work with arrayUnion
+      [scoreboardDotUid]: newScore,
+      //   absolute hack for typescript to work with arrayUnion
       // https://github.com/angular/angularfire/issues/2008
       correctGuesses: arrayUnion(...newCorrectGuesses) as unknown as string[],
       wrongGuesses: arrayUnion(...newWrongGuesses) as unknown as string[],
