@@ -19,7 +19,6 @@ import { RightGuessesComponent } from './components/right-guesses/right-guesses.
 import { GuessInputComponent } from './components/guess-input/guess-input.component';
 import { ScoreboardComponent } from './components/scoreboard/scoreboard.component';
 import { ChangeNameComponent } from './components/change-name/change-name.component';
-import { UidToNamePipe } from './pipes/uid-to-name.pipe';
 import { NextDalleButtonComponent } from './components/next-dalle-button/next-dalle-button.component';
 import { AdventurerUrlPipe } from './pipes/adventurer-url.pipe';
 import { PhraseUnderscorePipe } from './pipes/phrase-underscore.pipe';
@@ -30,6 +29,7 @@ import { AssimilatePromptPipe } from './pipes/assimilate-prompt.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { UidToUserDocPipe } from './pipes/uid-to-user-doc.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,13 +43,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     GuessInputComponent,
     ScoreboardComponent,
     ChangeNameComponent,
-    UidToNamePipe,
     NextDalleButtonComponent,
     AdventurerUrlPipe,
     PhraseUnderscorePipe,
     GenerateComponent,
     BlobToUrlPipe,
     AssimilatePromptPipe,
+    UidToUserDocPipe,
   ],
   imports: [
     BrowserModule,
