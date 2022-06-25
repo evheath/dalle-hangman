@@ -5,16 +5,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PhraseUnderscorePipe implements PipeTransform {
 
-  transform(phrase: string, correctGuesses: string[]): string {
+  transform(prompt: string, correctGuesses: string[]): string {
     let returningString = "";
-    let words = phrase.split(" ");
-    for (const word of words) {
-      if (correctGuesses.includes(word)) {
-        returningString += word;
+    let promptLetters = prompt.split("");
+    for (const promptLetter of promptLetters) {
+      if (promptLetter === " ") {
         returningString += " ";
+      } else if (correctGuesses.includes(promptLetter)) {
+        returningString += promptLetter;
+        // returningString += " ";
       } else {
-        returningString += "_".repeat(word.length);
-        returningString += " ";
+        returningString += "_";
+        // returningString += "_".repeat(word.length);
+        // returningString += " ";
       }
     }
     return returningString;
