@@ -5,12 +5,5 @@ export interface User {
 export interface Submission {
     prompt: string;
 }
-export interface Lobby {
-    dalleId: string;
-    wrongGuesses: string[];
-    correctGuesses: string[];
-    scoreboard: {
-        [key: string]: number;
-    };
-}
+export { Lobby } from './lobby.model';
 export { Dalle } from './dalle.model';

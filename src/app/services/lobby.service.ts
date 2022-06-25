@@ -86,7 +86,7 @@ export class LobbyService {
     )
   }
 
-  public async updateLobby(lobby: Lobby) {
-    return this.lobbyRef.update(lobby);
+  public async updateLobby(data: Partial<Lobby>) {
+    return this.lobbyRef.update(data);
   }
 }

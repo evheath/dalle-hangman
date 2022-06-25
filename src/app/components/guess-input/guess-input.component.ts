@@ -4,6 +4,7 @@ import { faker } from '@faker-js/faker';
 import { LobbyService } from 'src/app/services/lobby.service';
 import { DalleService } from 'src/app/services/dalle.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { arrayUnion } from 'firebase/firestore'
 
 @Component({
   selector: 'app-guess-input',
@@ -23,6 +24,8 @@ export class GuessInputComponent implements OnInit {
   }
 
   public async submitGuess(lobby: Lobby, dalle: Dalle) {
+    const newCorrectGuesses: string[] = [];
+    const newWrongGuesses: string[] = [];
     let words = this.guess ? this.guess.split(" ") : [this.placeholder];
     let me = await this.authService.me$.getValue();
     let uid = me!.uid;
@@ -37,7 +40,8 @@ export class GuessInputComponent implements OnInit {
 
       let wrongGuess = !dalle.prompt.includes(word) && !lobby.wrongGuesses.includes(word);;
       if (wrongGuess) {
-        lobby.wrongGuesses.push(word);
+        // lobby.wrongGuesses.push(word);
+        newWrongGuesses.push(word);
 
         // subtract 1 from this user's score, not sure if I want to do this
         if (!lobby.scoreboard[uid]) {
@@ -47,7 +51,8 @@ export class GuessInputComponent implements OnInit {
 
       let correctGuess = dalle.prompt.includes(word) && !lobby.correctGuesses.includes(word);
       if (correctGuess) {
-        lobby.correctGuesses.push(word);
+        // lobby.correctGuesses.push(word);
+        newCorrectGuesses.push(word);
 
         // add 1 from this user's score
         if (lobby.scoreboard[uid]) {
@@ -61,9 +66,16 @@ export class GuessInputComponent implements OnInit {
         }
       }
     }
+    console.log(newWrongGuesses);
+
     this.guess = "";
     this.placeholder = faker.random.word();
-    await this.lobbyService.updateLobby(lobby);
+    await this.lobbyService.updateLobby({
+      // absolute hack for typescript to work with arrayUnion
+      // https://github.com/angular/angularfire/issues/2008
+      correctGuesses: arrayUnion(...newCorrectGuesses) as unknown as string[],
+      wrongGuesses: arrayUnion(...newWrongGuesses) as unknown as string[],
+    });
   }
 
 }
