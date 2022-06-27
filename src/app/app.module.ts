@@ -30,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UidToUserDocPipe } from './pipes/uid-to-user-doc.pipe';
+import { PrevDalleButtonComponent } from './components/prev-dalle-button/prev-dalle-button.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { UidToUserDocPipe } from './pipes/uid-to-user-doc.pipe';
     BlobToUrlPipe,
     AssimilatePromptPipe,
     UidToUserDocPipe,
+    PrevDalleButtonComponent,
   ],
   imports: [
     BrowserModule,

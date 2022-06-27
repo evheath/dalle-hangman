@@ -8,6 +8,7 @@ import { LobbyService } from 'src/app/services/lobby.service';
   styleUrls: ['./next-dalle-button.component.css']
 })
 export class NextDalleButtonComponent implements OnInit {
+  public loading: boolean = false;
 
   constructor(
     private lobbyService: LobbyService
@@ -16,14 +17,10 @@ export class NextDalleButtonComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /**
-   * nextDalle
-   */
-  public async nextDalle() {
-    // console.log("next dalle");
-    let lobby = {} as Lobby;
-    lobby.dalleId = "8AkD7jZfqST0B2z26BGX";
-    this.lobbyService.updateLobby(lobby)
+  public async older() {
+    this.loading = true;
+    await this.lobbyService.goToOlderDalle()
+    this.loading = false;
   }
 
 }
