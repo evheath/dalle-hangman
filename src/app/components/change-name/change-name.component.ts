@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { faker } from '@faker-js/faker';
-import { User } from 'library';
+import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/auth.service';
+import { ChangeNameModalComponent } from '../change-name-modal/change-name-modal.component';
 
 
 @Component({
@@ -10,31 +10,23 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./change-name.component.css']
 })
 export class ChangeNameComponent implements OnInit {
-  public showModal: boolean = false;
-  public newName: string = "";
-  public placeholder: string = faker.name.findName();
   constructor(
-    public auth: AuthService
+    public auth: AuthService,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
   }
 
-  toggle() {
-    this.showModal = !this.showModal;
-  }
+  public async openModal() {
+    const dialogRef = this.dialog.open(ChangeNameModalComponent)
+    const name = await dialogRef.afterClosed().toPromise();
+    const user = this.auth.me$.value;
+    if (user && name !== "") {
+      const { uid } = user;
+      await this.auth.updateName(uid, name);
+    }
 
-  exitModal() {
-    this.showModal = false;
-    this.newName = "";
-    this.placeholder = faker.name.findName();
-  }
-
-  async updateName(user: User) {
-
-    let { uid } = user;
-    await this.auth.updateName(uid, this.newName || this.placeholder);
-    this.exitModal();
   }
 
 }

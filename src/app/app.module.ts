@@ -31,6 +31,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { UidToUserDocPipe } from './pipes/uid-to-user-doc.pipe';
 import { PrevDalleButtonComponent } from './components/prev-dalle-button/prev-dalle-button.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ChangeNameModalComponent } from './components/change-name-modal/change-name-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,7 @@ import { PrevDalleButtonComponent } from './components/prev-dalle-button/prev-da
     AssimilatePromptPipe,
     UidToUserDocPipe,
     PrevDalleButtonComponent,
+    ChangeNameModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { PrevDalleButtonComponent } from './components/prev-dalle-button/prev-da
     AngularFireStorageModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
