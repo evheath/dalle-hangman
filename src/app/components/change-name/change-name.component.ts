@@ -22,7 +22,7 @@ export class ChangeNameComponent implements OnInit {
     const dialogRef = this.dialog.open(ChangeNameModalComponent)
     const name = await dialogRef.afterClosed().toPromise();
     const user = this.auth.me$.value;
-    if (user && name !== "") {
+    if (user && name) {
       const { uid } = user;
       await this.auth.updateName(uid, name);
     }

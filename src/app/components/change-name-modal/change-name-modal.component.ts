@@ -19,8 +19,10 @@ export class ChangeNameModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  close() {
-    this.dialogRef.close(this.name || this.placeholder);
+  close(submit: boolean = true) {
+    this.dialogRef.close(submit
+      ? this.name || this.placeholder
+      : null);
   }
 
 }
