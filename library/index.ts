@@ -7,6 +7,18 @@ export interface Submission {
   prompt: string;
 }
 
-export { Lobby } from './lobby.model';
+export interface Dalle {
+  prompt: string;
+  images: string[];
+  timestamp: number;
+}
 
-export { Dalle } from './dalle.model';
+
+export interface Lobby {
+  dalleId: string;
+  wrongGuesses: string[];
+  correctGuesses: string[];
+  scoreboard: {
+    [key: string]: number
+  }
+}
